@@ -1,5 +1,7 @@
 // == Import
 import SearchBar from 'src/components/SearchBar';
+import ReposResults from 'src/components/ReposResults';
+import FaqPage from 'src/components/FaqPage';
 import { Menu, Card, Icon } from 'semantic-ui-react';
 
 // == Composant
@@ -30,6 +32,16 @@ function App() {
             </Card.Description>
           </Card.Content>
         </Card>
+        <Card.Group>
+          <ReposResults />
+          <ReposResults />
+          <ReposResults />
+          <ReposResults />
+          <ReposResults />
+          <ReposResults />
+        </Card.Group>
+
+        <FaqPage />
       </div>
 
     </div>
