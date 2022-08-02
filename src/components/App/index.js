@@ -1,13 +1,37 @@
 // == Import
-import reactLogo from './react-logo.svg';
-import './styles.css';
+import SearchBar from 'src/components/SearchBar';
+import { Menu, Card, Icon } from 'semantic-ui-react';
 
 // == Composant
 function App() {
   return (
     <div className="app">
-      <img src={reactLogo} alt="react logo" />
-      <h1>Composant : App</h1>
+      <div className="ui container">
+        <header>
+          <Icon name="github" size="large" />
+          <h1>GitHub</h1>
+        </header>
+        <Menu>
+          <Menu.Item
+            name="Recherche"
+          >
+            Recherche
+          </Menu.Item>
+          <Menu.Item
+            name="FAQ"
+          >
+            FAQ
+          </Menu.Item>
+        </Menu>
+        <Card fluid>
+          <Card.Content>
+            <Card.Description>
+              <SearchBar />
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      </div>
+
     </div>
   );
 }
