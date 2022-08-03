@@ -1,36 +1,48 @@
 // == Import
-/* import PropTypes from 'prop-types'; */
-import { Card, Image } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Card, Image, Icon } from 'semantic-ui-react';
 
 // == Composant
-function ReposResults() {
+function ReposResults({
+  avatarUrl,
+  name,
+  owner,
+  description,
+  htmlUrl,
+}) {
   return (
     <Card>
       <Image
-        alt="a gull"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Gull_portrait_ca_usa.jpg/1280px-Gull_portrait_ca_usa.jpg"
+        alt={`Avatar of ${owner}`}
+        src={avatarUrl}
         wrapped
         ui={false}
       />
       <Card.Content>
-        <Card.Header>Matthew</Card.Header>
+        <Card.Header>{name}</Card.Header>
         <Card.Meta>
-          <span className="date">Joined in 2015</span>
+          <span>{owner}</span>
         </Card.Meta>
         <Card.Description>
-          Matthew is a musician living in Nashville.
+          {description}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <a>
-          22 Friends
+          <Icon name="linkify" />
+          {htmlUrl}
         </a>
       </Card.Content>
     </Card>
   );
 }
 
-/* ReposResults.propTypes = {
-}; */
+ReposResults.propTypes = {
+  avatarUrl: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  htmlUrl: PropTypes.string.isRequired,
+};
 
 export default ReposResults;
