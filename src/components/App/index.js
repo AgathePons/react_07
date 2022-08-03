@@ -1,17 +1,47 @@
 // == Import
+import { useState } from 'react';
+
 import SearchBar from 'src/components/SearchBar';
 import ReposResults from 'src/components/ReposResults';
 import FaqPage from 'src/components/FaqPage';
-import { Menu, Card, Icon } from 'semantic-ui-react';
+import NotFound from 'src/components/NotFound';
+import {
+  Header,
+  Menu,
+  Card,
+  Icon,
+} from 'semantic-ui-react';
 
 // == Composant
 function App() {
+  const [searchInputText, setSearchInputText] = useState('');
+  const [reposData, setReposData] = useState([]);
+
+  const handleSearchInputChange = (event) => {
+    setSearchInputText(event.target.value);
+  };
+
+  const handleSearchInputSubmit = (event) => {
+    event.preventDefault();
+    console.log('search:', searchInputText);
+  };
+
+  const handleLoadData = async () => {
+    try {
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="app">
       <div className="ui container">
         <header>
-          <Icon name="github" size="large" />
-          <h1>GitHub</h1>
+          <Header as="h1">
+            <Icon name="github" size="large" />
+            GitHub
+          </Header>
         </header>
         <Menu>
           <Menu.Item
@@ -28,7 +58,11 @@ function App() {
         <Card fluid>
           <Card.Content>
             <Card.Description>
-              <SearchBar />
+              <SearchBar
+                searchInputText={searchInputText}
+                onSearchInputChange={handleSearchInputChange}
+                onSearchInputSubmit={handleSearchInputSubmit}
+              />
             </Card.Description>
           </Card.Content>
         </Card>
@@ -42,6 +76,8 @@ function App() {
         </Card.Group>
 
         <FaqPage />
+
+        <NotFound />
       </div>
 
     </div>

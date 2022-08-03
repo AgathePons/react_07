@@ -5,6 +5,7 @@
     "browser": true
   },
   "rules": {
+    "no-console": "off",
     "brace-style": ["error", "stroustrup"],
     "no-param-reassign": [
       "error",

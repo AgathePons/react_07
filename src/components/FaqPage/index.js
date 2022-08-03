@@ -1,5 +1,4 @@
 // == Import
-/* import PropTypes from 'prop-types'; */
 import { Card } from 'semantic-ui-react';
 
 // == Composant
@@ -20,8 +19,5 @@ function FaqPage() {
     </Card>
   );
 }
-
-/* FaqPage.propTypes = {
-}; */
 
 export default FaqPage;

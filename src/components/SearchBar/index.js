@@ -1,15 +1,28 @@
 // == Import
-/* import PropTypes from 'prop-types'; */
-import { Input } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Form } from 'semantic-ui-react';
 
 // == Composant
-function SearchBar() {
+function SearchBar({ searchInputText, onSearchInputChange, onSearchInputSubmit }) {
   return (
-    <Input icon="search" placeholder="Search..." />
+    <Form onSubmit={onSearchInputSubmit}>
+      <Form.Input
+        fluid
+        focus
+        icon="search"
+        placeholder="Search..."
+        type="text"
+        value={searchInputText}
+        onChange={onSearchInputChange}
+      />
+    </Form>
   );
 }
 
-/* SearchBar.propTypes = {
-}; */
+SearchBar.propTypes = {
+  searchInputText: PropTypes.string.isRequired,
+  onSearchInputChange: PropTypes.func.isRequired,
+  onSearchInputSubmit: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
