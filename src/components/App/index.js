@@ -1,5 +1,6 @@
 // == Import
 import { useState } from 'react';
+import axios from 'axios';
 
 import SearchBar from 'src/components/SearchBar';
 import ReposResults from 'src/components/ReposResults';
@@ -17,22 +18,26 @@ function App() {
   const [searchInputText, setSearchInputText] = useState('');
   const [reposData, setReposData] = useState([]);
 
+  const handleLoadData = async () => {
+    try {
+      const response = await axios.get(`https://api.github.com/search/repositories?q=${searchInputText}`);
+      console.log(`url : https://api.github.com/search/repositories?q=${searchInputText}`);
+      setReposData(response.data.items);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleSearchInputChange = (event) => {
     setSearchInputText(event.target.value);
   };
 
-  const handleSearchInputSubmit = (event) => {
+  const handleSearchInputSubmit = async (event) => {
     event.preventDefault();
     console.log('search:', searchInputText);
+    await handleLoadData();
   };
-
-  const handleLoadData = async () => {
-    try {
-      
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <div className="app">
@@ -67,12 +72,13 @@ function App() {
           </Card.Content>
         </Card>
         <Card.Group>
-          <ReposResults />
-          <ReposResults />
-          <ReposResults />
-          <ReposResults />
-          <ReposResults />
-          <ReposResults />
+          {
+            reposData.map((repo) => (
+              <ReposResults
+                key={repo.id}
+              />
+            ))
+          }
         </Card.Group>
 
         <FaqPage />
