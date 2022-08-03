@@ -1,6 +1,5 @@
 // == Import
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
 // == Composant
