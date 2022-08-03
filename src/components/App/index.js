@@ -94,17 +94,17 @@ function App() {
                 </Card>
                 <Card.Group>
                   {
-            reposData.map((repo) => (
-              <ReposResults
-                key={repo.id}
-                avatarUrl={repo.owner.avatar_url}
-                name={repo.name}
-                owner={repo.owner.login}
-                description={repo.description}
-                htmlUrl={repo.html_url}
-              />
-            ))
-          }
+                    reposData.map((repo) => (
+                      <ReposResults
+                        key={repo.id}
+                        avatarUrl={repo.owner.avatar_url}
+                        name={repo.name}
+                        owner={repo.owner.login}
+                        description={repo.description}
+                        htmlUrl={repo.html_url}
+                      />
+                    ))
+                  }
                 </Card.Group>
               </>
             )}

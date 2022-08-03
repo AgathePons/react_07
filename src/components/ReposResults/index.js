@@ -1,5 +1,6 @@
 // == Import
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
 // == Composant
@@ -28,9 +29,9 @@ function ReposResults({
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <a>
+        <a href={htmlUrl} target="_blank">
           <Icon name="linkify" />
-          {htmlUrl}
+          See on GitHub
         </a>
       </Card.Content>
     </Card>
