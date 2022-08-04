@@ -7,10 +7,11 @@ import './styles.scss';
 
 import HeaderElement from 'src/components/HeaderElement';
 import SearchBar from 'src/components/SearchBar';
+import Messages from 'src/components/Messages';
 import ReposResults from 'src/components/ReposResults';
 import FaqPage from 'src/components/FaqPage';
 import NotFound from 'src/components/NotFound';
-import { Card } from 'semantic-ui-react';
+import { Card, Segment } from 'semantic-ui-react';
 
 // == Composant
 function App() {
@@ -49,24 +50,14 @@ function App() {
             path="/"
             element={(
               <>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Description>
-                      <SearchBar
-                        searchInputText={searchInputText}
-                        onSearchInputChange={handleSearchInputChange}
-                        onSearchInputSubmit={handleSearchInputSubmit}
-                      />
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Description>
-                      La recherche a donné {searchResultCount} résultats
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
+                <Segment>
+                  <SearchBar
+                    searchInputText={searchInputText}
+                    onSearchInputChange={handleSearchInputChange}
+                    onSearchInputSubmit={handleSearchInputSubmit}
+                  />
+                </Segment>
+                <Messages counter={searchResultCount} />
                 <Card.Group>
                   {
                     reposData.map((repo) => (
