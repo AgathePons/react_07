@@ -11,12 +11,17 @@ function HeaderElement() {
         GitHub
       </Header>
       <Menu>
-        <NavLink
+        {/* use the Menu.Item from Semantic UI as the NavLink from React Router,
+        handle the active elements automatically */}
+        <Menu.Item
+          name="Recherche"
           to="/"
-          className={({ isActive }) => (isActive ? 'item active' : 'item')}
+          as={NavLink}
         >
           Recherche
-        </NavLink>
+        </Menu.Item>
+        {/* or use the NavLink from React Router and thanks to the special function of NavLink,
+        add the Semantic UI classes to display active styles */}
         <NavLink
           to="/faq"
           className={({ isActive }) => (isActive ? 'item active' : 'item')}
