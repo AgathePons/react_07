@@ -64,7 +64,7 @@ function App() {
                       <ReposResults
                         key={repo.id}
                         avatarUrl={repo.owner.avatar_url}
-                        name={repo.name}
+                        name={repo.full_name}
                         owner={repo.owner.login}
                         description={repo.description}
                         htmlUrl={repo.html_url}

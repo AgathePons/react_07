@@ -7,7 +7,7 @@ function Messages({ counter }) {
   return (
     <Segment>
       <p>
-        La recherche a donné {counter} résultats
+        La recherche a donné {counter} résultat{counter > 1 && 's'}
       </p>
     </Segment>
   );
