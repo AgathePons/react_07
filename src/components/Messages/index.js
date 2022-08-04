@@ -6,19 +6,16 @@ import { Segment } from 'semantic-ui-react';
 // == Composant
 function Messages({ currentSearchValue, isLoading, counter }) {
   const [resultCounter, setResultCounter] = useState(undefined);
-  // console.log(`Messages has been rendered : counter ${counter}, resultCounter ${resultCounter}`);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (!counter || resultCounter >= counter) {
-        console.log(`IF (resultCounter : ${resultCounter}, counter : ${counter})`);
         return;
-      } // return () => {};
+      }
       // because setResultCounter is async, we have to avoid this:
       // setResultCounter(resultCounter + 1)
       // --> use the current value in the function that is modifying the value
       // instead, we can pass a function (and take advantages of the function closure)
-      console.log('else');
       setResultCounter((oldCount) => {
         const newCountValue = Math.ceil(oldCount + (counter / 20));
         if (newCountValue > counter) return counter;
@@ -49,7 +46,6 @@ function Messages({ currentSearchValue, isLoading, counter }) {
       {!isLoading && counter && (
         <p>
           Vous avez recherché le terme <strong>{currentSearchValue}</strong>.<br />
-          La recherche a donné <strong>{counter}</strong> résultat{counter > 1 && 's'}.
           La recherche a donné <strong>{resultCounter}</strong> résultat{resultCounter > 1 && 's'}.
         </p>
       )}
