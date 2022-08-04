@@ -15,14 +15,14 @@ import {
 function ReposPage() {
   const [searchInputText, setSearchInputText] = useState('');
   const [currentSearchValue, setCurrentSearchValue] = useState('');
-  const [reposData, setReposData] = useState([]);
+  const [reposData, setReposData] = useState(null);
   const [searchResultCount, setSearchResultCount] = useState(undefined);
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const resetRequest = () => {
     setPageNumber(1);
-    setReposData([]);
+    setReposData(null);
   };
 
   const handleSearchInputChange = (event) => {
@@ -94,10 +94,10 @@ function ReposPage() {
         isLoading={isLoading}
         counter={searchResultCount}
       />
-      {isLoading && (
+      {(isLoading && !reposData) && (
       <Loader active inline="centered" />
       )}
-      {!isLoading && (
+      {reposData && (
       <>
         <Card.Group>
           {reposData.map((repo) => (
@@ -111,9 +111,11 @@ function ReposPage() {
             />
           ))}
         </Card.Group>
-        <Button onClick={handleLoadMoreResults}>
-          Plus de repos
-        </Button>
+        {(reposData.length > 0) && (
+          <Button loading={isLoading} onClick={handleLoadMoreResults}>
+            Plus de repos
+          </Button>
+        )}
       </>
       )}
     </>
