@@ -20,17 +20,6 @@ function App() {
   const [reposData, setReposData] = useState([]);
   const [searchResultCount, setSearchResultCount] = useState(0);
 
-  const handleLoadData = async () => {
-    try {
-      const response = await requestReposList(searchInputText);
-      setSearchResultCount(response.data.total_count);
-      setReposData(response.data.items);
-    }
-    catch (error) {
-      console.error(error);
-    }
-  };
-
   const handleSearchInputChange = (event) => {
     setSearchInputText(event.target.value);
   };
@@ -38,8 +27,19 @@ function App() {
   const handleSearchInputSubmit = async () => {
     // event.preventDefault() is handled by Semantic UI
     console.log('search:', searchInputText);
-    await handleLoadData();
-    setSearchInputText('');
+    // to avoid 422 error, if search input is empty, don't call API
+    if (searchInputText === '') return;
+    try {
+      const response = await requestReposList(searchInputText);
+      if (response) {
+        setSearchInputText('');
+        setSearchResultCount(response.data.total_count);
+        setReposData(response.data.items);
+      }
+    }
+    catch (error) {
+      // console.error(error);
+    }
   };
 
   return (

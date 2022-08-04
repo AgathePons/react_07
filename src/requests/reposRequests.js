@@ -14,8 +14,8 @@ const requestReposList = async (searchInputTextValue) => {
     );
   }
   catch (error) {
-    console.error(error);
-    return [];
+    console.error(error.response);
+    return false;
   }
 };
 
