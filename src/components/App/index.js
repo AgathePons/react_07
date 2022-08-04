@@ -1,5 +1,5 @@
 // == Import
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './styles.scss';
@@ -31,9 +31,13 @@ function App() {
   const handleSearchInputSubmit = async () => {
     // event.preventDefault() is handled by Semantic UI
     console.log('search:', searchInputText);
+    if (searchInputText !== '') setCurrentSearchValue(searchInputText);
+  };
+
+  // trigger when currentSearchValue is changed
+  useEffect(async () => {
     // to avoid 422 error, if search input is empty, don't call API
     if (searchInputText === '') return;
-    setCurrentSearchValue(searchInputText);
     setIsLoading(true);
     try {
       const response = await requestReposList(searchInputText);
@@ -47,7 +51,7 @@ function App() {
       // console.error(error);
     }
     setIsLoading(false);
-  };
+  }, [currentSearchValue]);
 
   return (
     <div className="app">
