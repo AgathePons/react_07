@@ -19,6 +19,7 @@ import {
 // == Composant
 function App() {
   const [searchInputText, setSearchInputText] = useState('');
+  const [currentSearchValue, setCurrentSearchValue] = useState('');
   const [reposData, setReposData] = useState([]);
   const [searchResultCount, setSearchResultCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +33,7 @@ function App() {
     console.log('search:', searchInputText);
     // to avoid 422 error, if search input is empty, don't call API
     if (searchInputText === '') return;
+    setCurrentSearchValue(searchInputText);
     setIsLoading(true);
     try {
       const response = await requestReposList(searchInputText);
@@ -63,7 +65,11 @@ function App() {
                     onSearchInputSubmit={handleSearchInputSubmit}
                   />
                 </Segment>
-                <Messages counter={searchResultCount} />
+                <Messages
+                  currentSearchValue={currentSearchValue}
+                  isLoading={isLoading}
+                  counter={searchResultCount}
+                />
                 {isLoading && (
                 <Loader active inline="centered" />
                 )}
