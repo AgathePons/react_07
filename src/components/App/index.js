@@ -12,13 +12,16 @@ import Messages from 'src/components/Messages';
 import ReposResults from 'src/components/ReposResults';
 import FaqPage from 'src/components/FaqPage';
 import NotFound from 'src/components/NotFound';
-import { Card, Segment } from 'semantic-ui-react';
+import {
+  Card, Segment, Loader,
+} from 'semantic-ui-react';
 
 // == Composant
 function App() {
   const [searchInputText, setSearchInputText] = useState('');
   const [reposData, setReposData] = useState([]);
   const [searchResultCount, setSearchResultCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchInputChange = (event) => {
     setSearchInputText(event.target.value);
@@ -29,6 +32,7 @@ function App() {
     console.log('search:', searchInputText);
     // to avoid 422 error, if search input is empty, don't call API
     if (searchInputText === '') return;
+    setIsLoading(true);
     try {
       const response = await requestReposList(searchInputText);
       if (response) {
@@ -40,6 +44,7 @@ function App() {
     catch (error) {
       // console.error(error);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -59,8 +64,12 @@ function App() {
                   />
                 </Segment>
                 <Messages counter={searchResultCount} />
-                <Card.Group>
-                  {
+                {isLoading && (
+                <Loader active inline="centered" />
+                )}
+                {!isLoading && (
+                  <Card.Group>
+                    {
                     reposData.map((repo) => (
                       <ReposResults
                         key={repo.id}
@@ -72,7 +81,8 @@ function App() {
                       />
                     ))
                   }
-                </Card.Group>
+                  </Card.Group>
+                )}
               </>
             )}
           />
