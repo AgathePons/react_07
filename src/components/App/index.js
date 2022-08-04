@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import './styles.scss';
 
+import requestReposList from 'src/requests/reposRequests';
+
 import HeaderElement from 'src/components/HeaderElement';
 import SearchBar from 'src/components/SearchBar';
 import Messages from 'src/components/Messages';
@@ -21,8 +23,7 @@ function App() {
 
   const handleLoadData = async () => {
     try {
-      const response = await axios.get(`https://api.github.com/search/repositories?q=${searchInputText}`);
-      console.log(`url : https://api.github.com/search/repositories?q=${searchInputText}`);
+      const response = await requestReposList(searchInputText);
       setSearchResultCount(response.data.total_count);
       setReposData(response.data.items);
     }
@@ -39,6 +40,7 @@ function App() {
     // event.preventDefault() is handled by Semantic UI
     console.log('search:', searchInputText);
     await handleLoadData();
+    setSearchInputText('');
   };
 
   return (
