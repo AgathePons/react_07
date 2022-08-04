@@ -1,7 +1,7 @@
 // == Import
 import axios from 'axios';
 
-const requestReposList = async (searchInputTextValue) => {
+const requestReposList = async (searchInputTextValue, page = 1, perPage = 9) => {
   try {
     console.log(`url : https://api.github.com/search/repositories?q=${searchInputTextValue}`);
     return await axios.get(
@@ -9,6 +9,9 @@ const requestReposList = async (searchInputTextValue) => {
       {
         params: {
           q: searchInputTextValue,
+          sort: 'stars',
+          page: page,
+          per_page: perPage,
         },
       },
     );
