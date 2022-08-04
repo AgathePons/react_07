@@ -54,12 +54,9 @@ function ReposPage() {
         const response = await requestReposList(searchInputText, pageNumber);
         if (response) {
           if (pageNumber === 1) {
-            console.log('first page');
             setReposData(response.data.items);
           }
           else {
-            console.log('other pages');
-            // setReposData(response.data.items);
             setReposData((oldValue) => ([
               ...oldValue,
               ...response.data.items,

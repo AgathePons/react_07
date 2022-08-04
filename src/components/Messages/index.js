@@ -43,10 +43,16 @@ function Messages({ currentSearchValue, isLoading, counter }) {
           Une recherche pour le terme <strong>{currentSearchValue}</strong> est en cours.<br />
         </p>
       )}
-      {!isLoading && counter && (
+      {!isLoading && counter > 0 && (
         <p>
           Vous avez recherché le terme <strong>{currentSearchValue}</strong>.<br />
           La recherche a donné <strong>{resultCounter}</strong> résultat{resultCounter > 1 && 's'}.
+        </p>
+      )}
+      {!isLoading && counter === 0 && (
+        <p>
+          Vous avez recherché le terme <strong>{currentSearchValue}</strong>.<br />
+          La recherche n'a donné <strong>aucun</strong> résultat.
         </p>
       )}
       {!isLoading && !counter && (
