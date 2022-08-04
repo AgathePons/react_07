@@ -11,7 +11,7 @@ function ReposResults({
   htmlUrl,
 }) {
   return (
-    <Card>
+    <Card as="article">
       <Image
         alt={`Avatar of ${owner}`}
         src={avatarUrl}

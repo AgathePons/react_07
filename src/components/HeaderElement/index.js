@@ -11,19 +11,17 @@ function HeaderElement() {
         GitHub
       </Header>
       <Menu>
-        <NavLink to="/">
-          <Menu.Item
-            name="Recherche"
-          >
-            Recherche
-          </Menu.Item>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? 'item active' : 'item')}
+        >
+          Recherche
         </NavLink>
-        <NavLink to="/faq">
-          <Menu.Item
-            name="FAQ"
-          >
-            FAQ
-          </Menu.Item>
+        <NavLink
+          to="/faq"
+          className={({ isActive }) => (isActive ? 'item active' : 'item')}
+        >
+          FAQ
         </NavLink>
       </Menu>
     </header>

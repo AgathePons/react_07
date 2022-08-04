@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="ui container">
+      <main className="ui container">
         <HeaderElement />
         <Routes>
           <Route
@@ -85,7 +85,7 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
+      </main>
 
     </div>
   );
