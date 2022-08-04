@@ -10,7 +10,8 @@ The app is developed with the **[React library](https://en.reactjs.org/)**.
 
 ## Hooks
 
-Some hooks from React or from React Router are used
+Some hooks from React or from React Router are used.  
+And clean-up fonctions are used with useEffect hooks.
 
 ## Controlled component
 

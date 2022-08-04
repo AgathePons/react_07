@@ -21,7 +21,7 @@ function App() {
   const [searchInputText, setSearchInputText] = useState('');
   const [currentSearchValue, setCurrentSearchValue] = useState('');
   const [reposData, setReposData] = useState([]);
-  const [searchResultCount, setSearchResultCount] = useState(0);
+  const [searchResultCount, setSearchResultCount] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchInputChange = (event) => {
