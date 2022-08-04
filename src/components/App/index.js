@@ -1,6 +1,5 @@
 // == Import
 import { useState } from 'react';
-import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
 
 import './styles.scss';
