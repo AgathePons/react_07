@@ -35,22 +35,28 @@ function App() {
   };
 
   // trigger when currentSearchValue is changed
-  useEffect(async () => {
-    // to avoid 422 error, if search input is empty, don't call API
-    if (searchInputText === '') return;
-    setIsLoading(true);
-    try {
-      const response = await requestReposList(searchInputText);
-      if (response) {
-        setSearchInputText('');
-        setSearchResultCount(response.data.total_count);
-        setReposData(response.data.items);
+  useEffect(() => {
+    // Because it is not recommended to use async directly with the useEffect,
+    // we declare an async function execRequest in the useEffect and we execute it directly (iife)
+    (async () => {
+      // to avoid 422 error, if search input is empty, don't call API
+      if (searchInputText === '') return;
+      setIsLoading(true);
+      try {
+        const response = await requestReposList(searchInputText);
+        if (response) {
+          setSearchInputText('');
+          setSearchResultCount(response.data.total_count);
+          setReposData(response.data.items);
+        }
       }
-    }
-    catch (error) {
-      // console.error(error);
-    }
-    setIsLoading(false);
+      catch (error) {
+        // console.error(error);
+      }
+      setIsLoading(false);
+    })();
+
+    // execRequest();
   }, [currentSearchValue]);
 
   return (
