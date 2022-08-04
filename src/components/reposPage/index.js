@@ -31,7 +31,6 @@ function ReposPage() {
 
   const handleSearchInputSubmit = async () => {
     // event.preventDefault() is handled by Semantic UI
-    console.log('search:', searchInputText);
     if (searchInputText !== '') {
       resetRequest();
       setCurrentSearchValue(searchInputText);
@@ -68,7 +67,7 @@ function ReposPage() {
         }
       }
       catch (error) {
-        // console.error(error);
+        console.error(error);
       }
       setIsLoading(false);
     })();
@@ -96,7 +95,10 @@ function ReposPage() {
       )}
       {reposData && (
       <>
-        <Card.Group>
+        <Card.Group
+          itemsPerRow={3}
+          stackable
+        >
           {reposData.map((repo) => (
             <ReposResults
               key={repo.id}
@@ -109,9 +111,16 @@ function ReposPage() {
           ))}
         </Card.Group>
         {(reposData.length > 0) && (
-          <Button loading={isLoading} onClick={handleLoadMoreResults}>
-            Plus de repos
-          </Button>
+          <Segment textAlign="center">
+            <Button
+              loading={isLoading}
+              onClick={handleLoadMoreResults}
+              color="violet"
+            >
+              Plus de repos
+            </Button>
+          </Segment>
+
         )}
       </>
       )}
