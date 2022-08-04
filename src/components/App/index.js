@@ -35,8 +35,8 @@ function App() {
     setSearchInputText(event.target.value);
   };
 
-  const handleSearchInputSubmit = async (event) => {
-    event.preventDefault();
+  const handleSearchInputSubmit = async () => {
+    // event.preventDefault() is handled by Semantic UI
     console.log('search:', searchInputText);
     await handleLoadData();
   };
